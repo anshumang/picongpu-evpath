@@ -1,0 +1,82 @@
+/**
+ * Copyright 2013-2015 Anshuman Goswami
+ *
+ * This file is part of PIConGPU.
+ *
+ * PIConGPU is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * PIConGPU is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with PIConGPU.
+ * If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+
+#pragma once
+
+#include <evpath.h>
+
+#include "types.h"
+#include "math/Vector.hpp"
+#include "simulation_types.hpp"
+#include "particles/frame_types.hpp"
+#include "simulationControl/MovingWindow.hpp"
+
+
+
+namespace picongpu
+{
+
+namespace evpath
+{
+using namespace PMacc;
+
+namespace po = boost::program_options;
+
+struct ThreadParams
+{
+    /* set at least the pointers to NULL by default */
+    ThreadParams() :
+        cellDescription(NULL)
+    {}
+
+    /** current simulation step */
+    uint32_t currentStep;
+
+    PMacc::math::UInt64<simDim> fieldsSizeDims;
+    PMacc::math::UInt64<simDim> fieldsGlobalSizeDims;
+    PMacc::math::UInt64<simDim> fieldsOffsetDims;
+
+    /** description of the grid/field layout, including guards etc. */
+    GridLayout<simDim> gridLayout;
+
+    /** cell description */
+    MappingDesc *cellDescription;
+
+    float *fieldBfr;                                /* temp. buffer for fields */
+
+    /** window describing the volume to be dumped */
+    Window window;
+
+    /** offset from local moving window to local domain */
+    DataSpace<simDim> localWindowToDomainOffset;
+};
+
+/**
+ * Writes simulation data to evpath transport.
+ * Implements the ISimulationPlugin interface.
+ */
+
+class EVPathWriter;
+
+} //namespace evpath
+} //namespace picongpu
+
