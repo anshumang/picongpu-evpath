@@ -31,7 +31,7 @@
 namespace picongpu
 {
 
-namespace adios
+namespace evpath
 {
 using namespace PMacc;
 

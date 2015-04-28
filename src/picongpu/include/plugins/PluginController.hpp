@@ -95,6 +95,8 @@
 #endif
 #endif
 
+#include "plugins/evpath/EVPathWriter.hpp"
+
 namespace picongpu
 {
 
@@ -182,6 +184,7 @@ private:
         plugins.push_back(new adios::ADIOSWriter());
 #endif
 #endif
+        plugins.push_back(new evpath::EVPathWriter());
 
         plugins.push_back(new EnergyFields("EnergyFields", "energy_fields"));
         plugins.push_back(new SumCurrents());

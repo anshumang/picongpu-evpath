@@ -50,6 +50,7 @@ struct ThreadParams
 
     /** current simulation step */
     uint32_t currentStep;
+    std::string reader;
 
     PMacc::math::UInt64<simDim> fieldsSizeDims;
     PMacc::math::UInt64<simDim> fieldsGlobalSizeDims;

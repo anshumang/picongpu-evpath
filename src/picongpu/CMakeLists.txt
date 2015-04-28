@@ -346,6 +346,11 @@ if(ADIOS_FOUND)
     set(LIBS ${LIBS} ${ADIOS_LIBRARIES})
 endif(ADIOS_FOUND)
 
+################################################################################
+# EVPath
+################################################################################
+include_directories(SYSTEM "/opt/data1/share/users/anshuman/include")
+set(LIBS ${LIBS} "/opt/data1/share/users/anshuman/lib/libevpath.a")
 
 ################################################################################
 # Warnings

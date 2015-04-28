@@ -20,6 +20,8 @@
 
 #pragma once
 
+#define ENABLE_EVPATH 1
+
 #if (ENABLE_EVPATH==1)
 #include <evpath.h>
 
